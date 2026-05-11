@@ -7,3 +7,9 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+outbox:
+  poller:
+    interval-ms: 5000
+
+nats:
+  url: ${NATS_URL:nats://localhost:4222}
