@@ -1,12 +1,19 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
 spring:
   jpa:
     hibernate:
       ddl-auto: create
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/authdb}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/-bizno_auth}
     driver-class-name: org.postgresql.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:-bizno}
+    password: ${SPRING_DATASOURCE_PASSWORD:-change-me}
   data:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:localhost}
@@ -24,5 +31,5 @@ outbox:
   poller:
     interval-ms: 5000
 
-nats:
-  url: ${NATS_URL:nats://localhost:4222}
+broker:
+  url: ${BROKER_URL:nats://localhost:4222}
