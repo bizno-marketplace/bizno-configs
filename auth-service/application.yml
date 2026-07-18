@@ -3,10 +3,10 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/-bizno}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/bizno}
     driver-class-name: org.postgresql.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:-bizno}
-    password: ${SPRING_DATASOURCE_PASSWORD:-change-me}
+    username: ${SPRING_DATASOURCE_USERNAME:bizno}
+    password: ${SPRING_DATASOURCE_PASSWORD:change-me}
   data:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:localhost}
