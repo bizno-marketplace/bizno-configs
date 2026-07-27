@@ -12,3 +12,26 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+  tracing:
+    sampling:
+      probability: 1.0
+    export:
+      zipkin:
+        endpoint: ${ZIPKIN_URL:http://localhost:9411}/api/v2/spans
+  logging:
+    pattern:
+      correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    include:
+      - application-name
+      - traceId
+      - spanId
+
+outbox:
+  poller:
+    interval-ms: 5000
+
+broker:
+  url: ${BROKER_URL:nats://localhost:4222}
+
+loki:
+  url: ${LOKI_URL:http://localhost:3100}
