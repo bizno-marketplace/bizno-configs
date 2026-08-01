@@ -1,8 +1,4 @@
 spring:
-  application:
-    name: api-gateway
-  config:
-    import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:8887}"
   cloud:
     gateway:
       server:
