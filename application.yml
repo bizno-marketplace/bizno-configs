@@ -30,9 +30,3 @@ management:
 outbox:
   poller:
     interval-ms: 5000
-
-broker:
-  url: ${BROKER_URL:nats://localhost:4222}
-
-loki:
-  url: ${LOKI_URL:http://localhost:3100}
