@@ -7,53 +7,53 @@ spring:
           predicates:
             - Path=/api/auth/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: seller-service
           uri: lb://seller-service
           predicates:
             - Path=/api/sellers/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: delivery-service
           uri: lb://delivery-service
           predicates:
             - Path=/api/delivery/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: review-service
           uri: lb://review-service
           predicates:
             - Path=/api/reviews/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: notification-service
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
