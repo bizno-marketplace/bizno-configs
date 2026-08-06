@@ -11,7 +11,7 @@ management:
     gateway:
       enabled: true
     health:
-      show-details: when-authorized
+      show-details: always
       
   metrics:
     tags:
@@ -22,8 +22,8 @@ management:
     sampling:
       probability: 1.0
     export:
-      zipkin:
-        endpoint: ${ZIPKIN_URL:http://localhost:9411}/api/v2/spans
+      otlp:
+        endpoint: ${TEMPO_URL:http://localhost:4318}/v1/traces
 
   logging:
     pattern:
