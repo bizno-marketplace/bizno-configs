@@ -1,7 +1,4 @@
 eureka:
-  client:
-    service-url:
-      defaultZone: ${DISCOVERY_SERVER_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
 
@@ -9,8 +6,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, prometheus
-
+        include: health, refresh, info, prometheus, gateway
+  endpoint:
+    health:
+      show-details: when-authorized
   metrics:
     tags:
       application: ${spring.application.name}
