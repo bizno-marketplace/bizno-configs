@@ -6,32 +6,38 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, refresh, info, prometheus, gateway
+        include: health,refresh,info,prometheus,gateway
+
   endpoint:
     gateway:
       enabled: true
+
     health:
       show-details: always
-      
-  metrics:
-    tags:
-      application: ${spring.application.name}
 
   tracing:
-    enabled: true
     sampling:
       probability: 1.0
-  otlp:
-    tracing:
-      endpoint: http://tempo:4318/v1/traces
 
-  logging:
-    pattern:
-      correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-    include:
-      - application-name
-      - traceId
-      - spanId
+  otlp:
+    metrics:
+      export:
+        url: ${OTEL_EXPORTER_OTLP_METRICS_ENDPOINT:http://localhost:4318/v1/metrics}
+
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT:http://localhost:4318/v1/traces}
+
+    logging:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:http://localhost:4318/v1/logs}
+
+logging:
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
 outbox:
   poller:
