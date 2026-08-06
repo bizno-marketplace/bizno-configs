@@ -8,8 +8,31 @@ management:
       exposure:
         include: health, refresh, info, prometheus, gateway
   endpoint:
+    gateway:
+      enabled: true
     health:
       show-details: when-authorized
+      
   metrics:
     tags:
       application: ${spring.application.name}
+
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    export:
+      zipkin:
+        endpoint: ${ZIPKIN_URL:http://localhost:9411}/api/v2/spans
+
+  logging:
+    pattern:
+      correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    include:
+      - application-name
+      - traceId
+      - spanId
+
+outbox:
+  poller:
+    interval-ms: 5000
