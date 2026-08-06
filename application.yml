@@ -8,8 +8,11 @@ management:
       exposure:
         include: health, refresh, info, prometheus, gateway
   endpoint:
+    gateway:
+      enabled: true
     health:
       show-details: when-authorized
+      
   metrics:
     tags:
       application: ${spring.application.name}
