@@ -3,17 +3,19 @@ eureka:
     prefer-ip-address: true
 
 management:
+  server:
+    port: 9761
+
   endpoints:
     web:
       exposure:
         include: health,refresh,info,prometheus,gateway
 
   endpoint:
-    gateway:
-      enabled: true
-
     health:
       show-details: always
+    gateway:
+      enabled: true
 
   tracing:
     sampling:
@@ -29,15 +31,6 @@ management:
       export:
         otlp:
           endpoint: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT:http://localhost:14318/v1/traces}
-
-    logging:
-      export:
-        otlp:
-          endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:http://localhost:14318/v1/logs}
-
-  logging:
-    pattern:
-      correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
 outbox:
   poller:
