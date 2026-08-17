@@ -32,7 +32,7 @@ management:
     logging:
       export:
         otlp:
-          endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:http://localhost:4318}/v1/logs
+          endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:http://localhost:14318}/v1/logs
 
 outbox:
   poller:
